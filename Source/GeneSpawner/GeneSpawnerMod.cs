@@ -14,10 +14,22 @@ namespace GeneSpawner
         static GeneSpawnerMod()
         {
             Harmony harmony = new Harmony("GeneSpawnerMod");
-            harmony.Patch(
-                AccessTools.Method(typeof(PawnGenerator),
-                    typeof(PawnGenerator).GetMethod("GenerateGenes", BindingFlags.NonPublic | BindingFlags.Static).Name),
-                postfix: new HarmonyMethod(patchType, nameof(PostfixGenerator)));
+
+            MethodInfo[] infos = typeof(PawnGenerator).GetMethods();
+
+            Log.Message("Got infos");
+            for(int i = 0; i < infos.Count(); ++i)
+            {
+                Log.Message(infos[i].Name);
+            }
+
+            //harmony.Patch(
+            //    PawnGenerator.GeneratePawn
+            //    AccessTools.Method(typeof(PawnGenerator),
+            //    typeof(PawnGenerator).GetMethod("GenerateGenes", BindingFlags.NonPublic | BindingFlags.Static).Name)
+            //    ,
+            //    postfix: new HarmonyMethod(patchType, nameof(PostfixGenerator))
+            //    );
         }
 
 
@@ -44,7 +56,7 @@ namespace GeneSpawner
                 {
                     //NOTE: I made the floor 1 here.  Should be zero, but wanted to test.  
                     numGenes = 1;
-                    return;
+                    //return;
                 }
             }
             else if (rr < t1)
@@ -66,30 +78,25 @@ namespace GeneSpawner
             //GeneDef test = GeneDefGenerator.
             IEnumerable<GeneDef> tst = DefDatabase<GeneDef>.AllDefs;
 
-            List<GeneDef> genes = GeneSpawnerModMath.RandomGeneFrom(tst, numGenes);
+            List<GeneDef> genes = RandomGeneFrom(tst, numGenes);
 
             for(int i = 0; i < genes.Count; ++i)
             {
                 pawn.genes.AddGene(genes[i],false);
             }
         }
-    }
-
-    public static class GeneSpawnerModMath
-    {
-        //Eventually have the probability and range configurable.  Right now...
         public static List<GeneDef> RandomGeneFrom(IEnumerable<GeneDef> ieArg, int numReturns = 1)
         {
             Random r = new Random();
             int length = ieArg.Count();
-            
+
 
             List<GeneDef> toList = ieArg.ToList();
             List<GeneDef> returns = new List<GeneDef>();
 
             int result;
 
-            for(int i = 0; i < numReturns; ++i)
+            for (int i = 0; i < numReturns; ++i)
             {
                 result = (int)r.NextInt64((long)length - 1);
                 returns.Add(toList[result]);
