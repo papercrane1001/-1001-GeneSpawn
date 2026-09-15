@@ -2,3 +2,4 @@
 /Source/GeneSpawner/.vs
 *.json
 /Source/GeneSpawner/obj
+*.cache
