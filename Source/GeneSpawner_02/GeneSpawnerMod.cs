@@ -19,23 +19,24 @@ namespace GeneSpawner_02
         {
             Harmony harmony = new Harmony("GeneSpawnerMod");
 
-            MethodInfo[] infos = typeof(PawnGenerator).GetMethods();
+            //MethodInfo[] infos = typeof(PawnGenerator).GetMethods();
 
-            Log.Message("Got infos");
-            for (int i = 0; i < infos.Count(); ++i)
-            {
-                Log.Message("infos: " + infos[i].Name);
-            }
+            //Log.Message("Got infos");
+            //for (int i = 0; i < infos.Count(); ++i)
+            //{
+            //    Log.Message("infos: " + infos[i].Name);
+            //}
             /*
              * GeneratePawn
              * GetXenotypeForGeneratedPawn
              * AdjustXenotypeForFactionlessPawn
-             * XenotypesAvailableFor
-             * 
+             * XenotypesAvailableFor 
              */
 
             harmony.Patch(
-                //PawnGenerator.GeneratePawn
+                //Pawn PawnGenerator.GeneratePawn(PawnKindDef kindDef, [Faction faction = null], [RimWorld.Planet.PlanetTile tile = null])
+                //PawnGenerator.GetXenotypeForGeneratedPawn
+                //XenotypeDef PawnGenerator.GetXenotypeForGeneratedPawn(PawnGenerationRequest request)
                 AccessTools.Method(typeof(PawnGenerator),
                 typeof(PawnGenerator).GetMethod("GeneratePawn", BindingFlags.NonPublic | BindingFlags.Static).Name)
                 ,
@@ -46,14 +47,15 @@ namespace GeneSpawner_02
 
         static void PostfixGenerator(Pawn pawn, XenotypeDef xenotype, PawnGenerationRequest request)
         {
+            if(pawn == null)
+            {
+                return;
+            }
             int numGenes = 2;
             float t1 = 0.33f;
             float t2 = 0.1f;
 
-            //if(request.xen)
-
             //TODO: Blacklist?
-
             //Decide how many genes to add
             Random r = new Random();
             double rr = r.NextDouble();
@@ -83,13 +85,13 @@ namespace GeneSpawner_02
             }
 
             //SpawnThoseGenes has a def database of allowed xenotypes.
-            //GeneDef
 
-            //GeneDefOf.
-            //GeneDef test = GeneDefGenerator.
+            Log.Message("ln89");
             IEnumerable<GeneDef> tst = DefDatabase<GeneDef>.AllDefs;
+            Log.Message("ln91");
 
             List<GeneDef> genes = RandomGeneFrom(tst, numGenes);
+            Log.Message("ln94");
 
             for (int i = 0; i < genes.Count; ++i)
             {
@@ -98,6 +100,7 @@ namespace GeneSpawner_02
         }
         public static List<GeneDef> RandomGeneFrom(IEnumerable<GeneDef> ieArg, int numReturns = 1)
         {
+            Log.Message("RandomGeneFrom start");
             Random r = new Random();
             int length = ieArg.Count();
 
