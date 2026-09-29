@@ -33,24 +33,43 @@ namespace GeneSpawner_02
              * XenotypesAvailableFor 
              */
 
-            harmony.Patch(
-                //Pawn PawnGenerator.GeneratePawn(PawnKindDef kindDef, [Faction faction = null], [RimWorld.Planet.PlanetTile tile = null])
-                //PawnGenerator.GetXenotypeForGeneratedPawn
-                //XenotypeDef PawnGenerator.GetXenotypeForGeneratedPawn(PawnGenerationRequest request)
-                AccessTools.Method(typeof(PawnGenerator),
-                typeof(PawnGenerator).GetMethod("GeneratePawn", BindingFlags.NonPublic | BindingFlags.Static).Name)
-                ,
-                postfix: new HarmonyMethod(patchType, nameof(PostfixGenerator))
+            //PawnGenerator.GeneratePawn(PawnGenerationRequest request)
+            //PawnGenerator.GeneratePawn(PawnKindDef kindDef,...)
+
+            //harmony.Patch(
+            //    //Pawn PawnGenerator.GeneratePawn(PawnKindDef kindDef, [Faction faction = null], [RimWorld.Planet.PlanetTile tile = null])
+            //    //PawnGenerator.GetXenotypeForGeneratedPawn
+            //    //XenotypeDef PawnGenerator.GetXenotypeForGeneratedPawn(PawnGenerationRequest request)
+            //    AccessTools.Method(typeof(PawnGenerator),
+            //    typeof(PawnGenerator).GetMethod("GeneratePawn", BindingFlags.Public | BindingFlags.Static).Name)
+            //    ,
+            //    postfix: new HarmonyMethod(patchType, nameof(PostfixGenerator))
+            //    );
+
+            MethodInfo method = AccessTools.Method(
+                typeof(PawnGenerator),
+                "GeneratePawn",
+                new Type[] { typeof(PawnGenerationRequest) }
                 );
+
+            
+
+            HarmonyMethod MyPrefix = new HarmonyMethod(patchType, 
+                nameof(PrefixGenerator), 
+                new Type[] { typeof(Pawn).MakeByRefType(), typeof(PawnGenerationRequest) });
+
+            harmony.Patch(method, MyPrefix);
+
+            //harmony.Patch(
+            //    AccessTools.Method(typeof(PawnGenerator),
+            //    "GeneratePawn", new Type[] { typeof(PawnGenerationRequest) }),
+            //    postfix: new HarmonyMethod(patchType, nameof(PostfixGenerator))
+            //    );
         }
 
 
-        static void PostfixGenerator(Pawn pawn, XenotypeDef xenotype, PawnGenerationRequest request)
+        static bool PrefixGenerator(ref Pawn __result, PawnGenerationRequest request)
         {
-            if(pawn == null)
-            {
-                return;
-            }
             int numGenes = 2;
             float t1 = 0.33f;
             float t2 = 0.1f;
@@ -92,11 +111,18 @@ namespace GeneSpawner_02
 
             List<GeneDef> genes = RandomGeneFrom(tst, numGenes);
             Log.Message("ln94");
-
+            //List<GeneDef> geneDefs = new List<GeneDef>();
             for (int i = 0; i < genes.Count; ++i)
             {
-                pawn.genes.AddGene(genes[i], false);
+                //geneDefs.Add(genes[i]);
+                //request.ForcedEndogenes.Add(genes[i]);
+                //pawn.genes.AddGene(genes[i], false);
+                __result.genes.AddGene(genes[i],false);
             }
+            //Log.Message("ln120");
+            //request.ForcedEndogenes = geneDefs;
+            Log.Message("ln123");
+            return true;
         }
         public static List<GeneDef> RandomGeneFrom(IEnumerable<GeneDef> ieArg, int numReturns = 1)
         {

@@ -1,0 +1,18 @@
+Error in static constructor of GeneSpawner_02.GeneSpawnerMod: System.TypeInitializationException: The type initializer for 'GeneSpawner_02.GeneSpawnerMod' threw an exception. ---> System.ArgumentException: Cannot not find method for type GeneSpawner_02.GeneSpawnerMod and name PrefixGenerator and parameters (Verse.Pawn, Verse.PawnGenerationRequest)
+[Ref B3900DEB]
+HarmonyLib.HarmonyMethod..ctor(Type methodType, String methodName, Type[] argumentTypes)
+GeneSpawner_02.GeneSpawnerMod..cctor()
+   --- End of inner exception stack trace ---
+[Ref 6DDF3653]
+(wrapper managed-to-native) System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(intptr)
+  at System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor (System.RuntimeTypeHandle type) [0x0002a] in <51fded79cd284d4d911c5949aff4cb21>:0 
+  at Verse.StaticConstructorOnStartupUtility.CallAll () [0x00025] in <61e4173561894da49d210260257b5097>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+Verse.Log:Error (string)
+Verse.StaticConstructorOnStartupUtility:CallAll ()
+Verse.PlayDataLoader/<>c:<DoPlayLoad>b__4_4 ()
+Verse.LongEventHandler:ExecuteToExecuteWhenFinished ()
+Verse.LongEventHandler:UpdateCurrentAsynchronousEvent ()
+Verse.LongEventHandler:LongEventsUpdate (bool&)
+Verse.Root:Update ()
+Verse.Root_Entry:Update ()
