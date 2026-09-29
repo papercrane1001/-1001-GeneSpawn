@@ -6,7 +6,7 @@
     </supportedVersions>
     <modDependencies>
         <li>
-            <packageId>Ludeon.RimWorld.Biotech</packageId>
+            <packageId>ludeon.rimWorld.biotech</packageId>
             <displayName>Biotech</displayName>
         </li>
         <li>
@@ -20,8 +20,6 @@
         <li>ludeon.rimworld.biotech</li>
         <li>brrainz.harmony</li>
     </loadAfter>
-    <packageId>pc1001.GeneSpawner</packageId>
-    <description>
-Spawns random genes on generated pawns.  
-    </description>
+    <packageId>pc1001.genespawner</packageId>
+    <description>Spawns random genes on generated pawns.</description>
 </ModMetaData>

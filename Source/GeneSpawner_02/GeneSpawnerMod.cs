@@ -1,16 +1,20 @@
-﻿using HarmonyLib;
-using RimWorld;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Xml;
+using HarmonyLib;
+using RimWorld;
 using Verse;
+using System.Text;
+using System.Threading.Tasks;
 
-
-namespace GeneSpawner
+namespace GeneSpawner_02
 {
     [StaticConstructorOnStartup]
     public class GeneSpawnerMod
     {
         private static readonly Type patchType = typeof(GeneSpawnerMod);
-
         static GeneSpawnerMod()
         {
             Harmony harmony = new Harmony("GeneSpawnerMod");
@@ -18,18 +22,25 @@ namespace GeneSpawner
             MethodInfo[] infos = typeof(PawnGenerator).GetMethods();
 
             Log.Message("Got infos");
-            for(int i = 0; i < infos.Count(); ++i)
+            for (int i = 0; i < infos.Count(); ++i)
             {
-                Log.Message(infos[i].Name);
+                Log.Message("infos: " + infos[i].Name);
             }
+            /*
+             * GeneratePawn
+             * GetXenotypeForGeneratedPawn
+             * AdjustXenotypeForFactionlessPawn
+             * XenotypesAvailableFor
+             * 
+             */
 
-            //harmony.Patch(
-            //    PawnGenerator.GeneratePawn
-            //    AccessTools.Method(typeof(PawnGenerator),
-            //    typeof(PawnGenerator).GetMethod("GenerateGenes", BindingFlags.NonPublic | BindingFlags.Static).Name)
-            //    ,
-            //    postfix: new HarmonyMethod(patchType, nameof(PostfixGenerator))
-            //    );
+            harmony.Patch(
+                //PawnGenerator.GeneratePawn
+                AccessTools.Method(typeof(PawnGenerator),
+                typeof(PawnGenerator).GetMethod("GeneratePawn", BindingFlags.NonPublic | BindingFlags.Static).Name)
+                ,
+                postfix: new HarmonyMethod(patchType, nameof(PostfixGenerator))
+                );
         }
 
 
@@ -80,9 +91,9 @@ namespace GeneSpawner
 
             List<GeneDef> genes = RandomGeneFrom(tst, numGenes);
 
-            for(int i = 0; i < genes.Count; ++i)
+            for (int i = 0; i < genes.Count; ++i)
             {
-                pawn.genes.AddGene(genes[i],false);
+                pawn.genes.AddGene(genes[i], false);
             }
         }
         public static List<GeneDef> RandomGeneFrom(IEnumerable<GeneDef> ieArg, int numReturns = 1)
@@ -98,7 +109,7 @@ namespace GeneSpawner
 
             for (int i = 0; i < numReturns; ++i)
             {
-                result = (int)r.NextInt64((long)length - 1);
+                result = r.Next(length - 1);
                 returns.Add(toList[result]);
             }
             return returns;

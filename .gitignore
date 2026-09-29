@@ -3,3 +3,4 @@
 *.json
 /Source/GeneSpawner/obj
 *.cache
+/Source/GeneSpawner_02/.vs
