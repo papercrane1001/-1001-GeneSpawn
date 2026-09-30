@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 namespace GeneSpawner_02
 {
     [StaticConstructorOnStartup]
+    [HarmonyPatch(typeof(PawnGenerator))]
+    [HarmonyPatch("GeneratePawn", new Type[] {typeof(PawnGenerationRequest) })]
     public class GeneSpawnerMod
     {
         private static readonly Type patchType = typeof(GeneSpawnerMod);
@@ -58,7 +60,7 @@ namespace GeneSpawner_02
                 nameof(PrefixGenerator), 
                 new Type[] { typeof(Pawn).MakeByRefType(), typeof(PawnGenerationRequest) });
 
-            harmony.Patch(method, MyPrefix);
+            harmony.Patch(method, null, MyPrefix);
 
             //harmony.Patch(
             //    AccessTools.Method(typeof(PawnGenerator),
@@ -68,61 +70,75 @@ namespace GeneSpawner_02
         }
 
 
-        static bool PrefixGenerator(ref Pawn __result, PawnGenerationRequest request)
+        static void PrefixGenerator(ref Pawn __result, PawnGenerationRequest request)
         {
-            int numGenes = 2;
-            float t1 = 0.33f;
-            float t2 = 0.1f;
-
-            //TODO: Blacklist?
-            //Decide how many genes to add
-            Random r = new Random();
-            double rr = r.NextDouble();
-            if (rr < t2)
+            try
             {
-                if (r.NextDouble() > 0.5)
+                if (__result == null)
                 {
-                    numGenes = 4;
+                    return;
                 }
-                else
+
+                int numGenes = 2;
+                float t1 = 0.33f;
+                float t2 = 0.1f;
+
+                //TODO: Blacklist?
+                //Decide how many genes to add
+                Random r = new Random();
+                double rr = r.NextDouble();
+                if (rr < t2)
                 {
-                    //NOTE: I made the floor 1 here.  Should be zero, but wanted to test.  
-                    numGenes = 1;
-                    //return;
+                    if (r.NextDouble() > 0.5)
+                    {
+                        numGenes = 4;
+                    }
+                    else
+                    {
+                        //NOTE: I made the floor 1 here.  Should be zero, but wanted to test.  
+                        numGenes = 1;
+                        //return;
+                    }
                 }
+                else if (rr < t1)
+                {
+                    if (r.NextDouble() > 0.5)
+                    {
+                        numGenes = 3;
+                    }
+                    else
+                    {
+                        numGenes = 1;
+                    }
+                }
+
+                //SpawnThoseGenes has a def database of allowed xenotypes.
+
+                Log.Message("ln89");
+                IEnumerable<GeneDef> tst = DefDatabase<GeneDef>.AllDefs;
+                Log.Message("ln91");
+
+                List<GeneDef> genes = RandomGeneFrom(tst, numGenes);
+                Log.Message("ln94");
+                //List<GeneDef> geneDefs = new List<GeneDef>();
+                for (int i = 0; i < genes.Count; ++i)
+                {
+                    //geneDefs.Add(genes[i]);
+                    //request.ForcedEndogenes.Add(genes[i]);
+                    //pawn.genes.AddGene(genes[i], false);
+                    __result.genes.AddGene(genes[i], false);
+                }
+                //Log.Message("ln120");
+                //request.ForcedEndogenes = geneDefs;
+                Log.Message("ln123");
+                //return true;
+                //return __result;
             }
-            else if (rr < t1)
+            catch
             {
-                if (r.NextDouble() > 0.5)
-                {
-                    numGenes = 3;
-                }
-                else
-                {
-                    numGenes = 1;
-                }
+                Log.Message("No PawnGenerationRequest?");
             }
 
-            //SpawnThoseGenes has a def database of allowed xenotypes.
-
-            Log.Message("ln89");
-            IEnumerable<GeneDef> tst = DefDatabase<GeneDef>.AllDefs;
-            Log.Message("ln91");
-
-            List<GeneDef> genes = RandomGeneFrom(tst, numGenes);
-            Log.Message("ln94");
-            //List<GeneDef> geneDefs = new List<GeneDef>();
-            for (int i = 0; i < genes.Count; ++i)
-            {
-                //geneDefs.Add(genes[i]);
-                //request.ForcedEndogenes.Add(genes[i]);
-                //pawn.genes.AddGene(genes[i], false);
-                __result.genes.AddGene(genes[i],false);
-            }
-            //Log.Message("ln120");
-            //request.ForcedEndogenes = geneDefs;
-            Log.Message("ln123");
-            return true;
         }
         public static List<GeneDef> RandomGeneFrom(IEnumerable<GeneDef> ieArg, int numReturns = 1)
         {
