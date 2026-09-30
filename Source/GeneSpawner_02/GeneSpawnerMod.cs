@@ -21,52 +21,17 @@ namespace GeneSpawner_02
         {
             Harmony harmony = new Harmony("GeneSpawnerMod");
 
-            //MethodInfo[] infos = typeof(PawnGenerator).GetMethods();
-
-            //Log.Message("Got infos");
-            //for (int i = 0; i < infos.Count(); ++i)
-            //{
-            //    Log.Message("infos: " + infos[i].Name);
-            //}
-            /*
-             * GeneratePawn
-             * GetXenotypeForGeneratedPawn
-             * AdjustXenotypeForFactionlessPawn
-             * XenotypesAvailableFor 
-             */
-
-            //PawnGenerator.GeneratePawn(PawnGenerationRequest request)
-            //PawnGenerator.GeneratePawn(PawnKindDef kindDef,...)
-
-            //harmony.Patch(
-            //    //Pawn PawnGenerator.GeneratePawn(PawnKindDef kindDef, [Faction faction = null], [RimWorld.Planet.PlanetTile tile = null])
-            //    //PawnGenerator.GetXenotypeForGeneratedPawn
-            //    //XenotypeDef PawnGenerator.GetXenotypeForGeneratedPawn(PawnGenerationRequest request)
-            //    AccessTools.Method(typeof(PawnGenerator),
-            //    typeof(PawnGenerator).GetMethod("GeneratePawn", BindingFlags.Public | BindingFlags.Static).Name)
-            //    ,
-            //    postfix: new HarmonyMethod(patchType, nameof(PostfixGenerator))
-            //    );
-
             MethodInfo method = AccessTools.Method(
                 typeof(PawnGenerator),
                 "GeneratePawn",
                 new Type[] { typeof(PawnGenerationRequest) }
                 );
 
-            
-
             HarmonyMethod MyPrefix = new HarmonyMethod(patchType, 
                 nameof(PrefixGenerator), 
                 new Type[] { typeof(Pawn).MakeByRefType(), typeof(PawnGenerationRequest) });
 
             harmony.Patch(method, null, MyPrefix);
-
-            //harmony.Patch(
-            //    AccessTools.Method(typeof(PawnGenerator),
-            //    "GeneratePawn", new Type[] { typeof(PawnGenerationRequest) }),
-            //    postfix: new HarmonyMethod(patchType, nameof(PostfixGenerator))
-            //    );
         }
 
 
@@ -80,7 +45,7 @@ namespace GeneSpawner_02
                 }
 
                 int numGenes = 2;
-                float t1 = 0.33f;
+                float t1 = 0.32f; //all within 1 standard dev have 1-3 random genes
                 float t2 = 0.1f;
 
                 //TODO: Blacklist?
@@ -96,8 +61,8 @@ namespace GeneSpawner_02
                     else
                     {
                         //NOTE: I made the floor 1 here.  Should be zero, but wanted to test.  
-                        numGenes = 1;
-                        //return;
+                        numGenes = 0;
+                        return;
                     }
                 }
                 else if (rr < t1)
@@ -114,38 +79,24 @@ namespace GeneSpawner_02
 
                 //SpawnThoseGenes has a def database of allowed xenotypes.
 
-                Log.Message("ln89");
                 IEnumerable<GeneDef> tst = DefDatabase<GeneDef>.AllDefs;
-                Log.Message("ln91");
 
                 List<GeneDef> genes = RandomGeneFrom(tst, numGenes);
-                Log.Message("ln94");
-                //List<GeneDef> geneDefs = new List<GeneDef>();
                 for (int i = 0; i < genes.Count; ++i)
                 {
-                    //geneDefs.Add(genes[i]);
-                    //request.ForcedEndogenes.Add(genes[i]);
-                    //pawn.genes.AddGene(genes[i], false);
                     __result.genes.AddGene(genes[i], false);
                 }
-                //Log.Message("ln120");
-                //request.ForcedEndogenes = geneDefs;
-                Log.Message("ln123");
-                //return true;
-                //return __result;
             }
             catch
             {
-                Log.Message("No PawnGenerationRequest?");
+                return;//Probably unnecessary.  
             }
 
         }
         public static List<GeneDef> RandomGeneFrom(IEnumerable<GeneDef> ieArg, int numReturns = 1)
         {
-            Log.Message("RandomGeneFrom start");
             Random r = new Random();
             int length = ieArg.Count();
-
 
             List<GeneDef> toList = ieArg.ToList();
             List<GeneDef> returns = new List<GeneDef>();
