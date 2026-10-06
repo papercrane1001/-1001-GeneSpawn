@@ -14,10 +14,10 @@ namespace GeneSpawner_02
     [StaticConstructorOnStartup]
     [HarmonyPatch(typeof(PawnGenerator))]
     [HarmonyPatch("GeneratePawn", new Type[] {typeof(PawnGenerationRequest) })]
-    public class GeneSpawnerMod
+    public class GeneSpawner
     {
-        private static readonly Type patchType = typeof(GeneSpawnerMod);
-        static GeneSpawnerMod()
+        private static readonly Type patchType = typeof(GeneSpawner);
+        static GeneSpawner()
         {
             Harmony harmony = new Harmony("GeneSpawnerMod");
 

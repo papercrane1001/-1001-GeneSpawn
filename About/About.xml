@@ -21,5 +21,24 @@
         <li>brrainz.harmony</li>
     </loadAfter>
     <packageId>pc1001.genespawner</packageId>
-    <description>Spawns random genes on generated pawns.</description>
+    <description>Spawns random genes on all generated pawns... and I mean all of them.  It will pick a number, 0 to 4, and assign that many randomly selected genes to the generated pawn.  It will not look at dependencies, it will not look at cosmetic vs functional, it will not respect fixed xeno- or endo-types.  
+	
+	Like my mod? Donate at:
+  https://ko-fi.com/papercrane1001
+  
+  I use the MIT license: https://opensource.org/licenses/MIT
+which mostly says that if you use my code, please give me credit.
+  
+  GitHub at: https://github.com/papercrane1001/-1001-GeneSpawn  
+  
+  Version 1.0.0
+
+  Compatibe with 1.6.  
+  
+  CE compatible as long as all your gene mods are compatible.  
+  
+  
+  
+  
+  </description>
 </ModMetaData>
