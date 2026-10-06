@@ -12,13 +12,9 @@ namespace GeneSpawner_02
 {
     public sealed class GeneSpawner_Mod : Mod
     {
+        //Using Quarry for a lot of help on the settings window
         public GeneSpawner_Mod(ModContentPack mcp) : base(mcp)
         {
-            LongEventHandler.ExecuteWhenFinished(GetSettings);
-            LongEventHandler.ExecuteWhenFinished(PushDatabase);
-            LongEventHandler.ExecuteWhenFinished(BuildDictionary);
-            LongEventHandler.ExecuteWhenFinished(SetFertility);
-
             LongEventHandler.ExecuteWhenFinished()
         }
 
