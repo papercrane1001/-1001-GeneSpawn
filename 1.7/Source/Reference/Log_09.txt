@@ -1,0 +1,26 @@
+Error while resolving symbol "pawn" with params=rect=(52,222,60,237), faction=Liteyoth Mechhive, custom=null, combatPoints=null, pawnGroupMakerParams=null, pawnGroupKindDef=null, roofDef=null, noRoof=null, addRoomCenterToRootsToUnfog=null, singleThingToSpawn=null, singleThingDef=null, singleThingStuff=null, singleThingStackCount=null, skipSingleThingIfHasToWipeBuildingOrDoesntFit=null, spawnBridgeIfTerrainCantSupportThing=null, singleThingInnerThings=null, singlePawnToSpawn=null, singlePawnKindDef=Mech_Tesseron, disableSinglePawn=True, singlePawnLord=Verse.AI.Group.Lord, settlementLord=null, singlePawnSpawnCellExtraPredicate=null, singlePawnGenerationRequest=null, postThingSpawn=null, postThingGenerate=null, mechanoidsCount=4, wakeSleepingMechanoidsOnUnfogged=True, hivesCount=null, disableHives=True, thingRot=null, wallStuff=null, chanceToSkipWallBlock=null, floorDef=null, chanceToSkipFloor=null, filthDef=null, filthDensity=null, floorOnlyIfTerrainSupports=null, allowBridgeOnAnyImpassableTerrain=null, clearEdificeOnly=null, clearFillageOnly=null, clearRoof=null, ancientCryptosleepCasketGroupID=null, podContentsType=null, ancientCryptosleepCasketOpenSignalTag=null, thingSetMakerDef=null, thingSetMakerParams=null, stockpileConcreteContents=null, stockpileMarketValue=null, innerStockpileSize=null, edgeDefenseWidth=null, edgeDefenseTurretsCount=null, edgeDefenseMortarsCount=null, edgeDefenseGuardsCount=null, mortarDef=null, pathwayFloorDef=null, cultivatedPlantDef=null, fixedCulativedPlantGrowth=null, fillWithThingsPadding=null, settlementPawnGroupPoints=null, settlementPawnGroupSeed=null, settlementDontGeneratePawns=null, attackWhenPlayerBecameEnemy=null, streetHorizontal=null, edgeThingAvoidOtherEdgeThings=null, edgeThingMustReachMapEdge=null, allowPlacementOffEdge=null, thrustAxis=null, makeWarningLetter=True, allowedMonumentThings=ingredients, bedCount=null, workSitePoints=null, lootConcereteContents=null, lootMarketValue=null, extraDoorEdge=null, minLengthAfterSplit=null
+
+Exception: System.NullReferenceException: Object reference not set to an instance of an object
+[Ref E6A6FF69]
+  at GeneSpawner_02.GeneSpawnerMod.PrefixGenerator (Verse.Pawn& __result, Verse.PawnGenerationRequest request) [0x000c5] in <c51e000bcbef4230912aa7fc03f74520>:0 
+  at Verse.PawnGenerator.GeneratePawn (Verse.PawnGenerationRequest request) [0x001dd] in <61e4173561894da49d210260257b5097>:0 
+    - POSTFIX GeneSpawnerMod: Void GeneSpawner_02.GeneSpawnerMod:PrefixGenerator(Pawn& __result, PawnGenerationRequest request)
+  at RimWorld.BaseGen.SymbolResolver_SinglePawn.Resolve (RimWorld.BaseGen.ResolveParams rp) [0x001b2] in <61e4173561894da49d210260257b5097>:0 
+  at RimWorld.BaseGen.BaseGen.Resolve (RimWorld.BaseGen.SymbolStack+Element toResolve) [0x000f5] in <61e4173561894da49d210260257b5097>:0 
+  at RimWorld.BaseGen.BaseGen.Generate () [0x000e2] in <61e4173561894da49d210260257b5097>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+Verse.Log:Error (string)
+RimWorld.BaseGen.BaseGen:Generate ()
+RimWorld.GenStep_ScatterShrines:ScatterAt (Verse.IntVec3,Verse.Map,Verse.GenStepParams,int)
+Verse.GenStep_Scatterer:Generate (Verse.Map,Verse.GenStepParams)
+Verse.MapGenerator:GenerateContentsIntoMap (System.Collections.Generic.IEnumerable`1<Verse.GenStepWithParams>,Verse.Map,int,bool)
+Verse.MapGenerator:GenerateMap (Verse.IntVec3,RimWorld.Planet.MapParent,Verse.MapGeneratorDef,System.Collections.Generic.IEnumerable`1<Verse.GenStepWithParams>,System.Action`1<Verse.Map>,bool,bool)
+Verse.Game:InitNewGame ()
+Verse.Root_Play/<>c:<Start>b__1_2 ()
+Verse.LongEventHandler:RunEventFromAnotherThread (System.Action)
+Verse.LongEventHandler/<>c:<UpdateCurrentAsynchronousEvent>b__28_0 ()
+System.Threading.ThreadHelper:ThreadStart_Context (object)
+System.Threading.ExecutionContext:RunInternal (System.Threading.ExecutionContext,System.Threading.ContextCallback,object,bool)
+System.Threading.ExecutionContext:Run (System.Threading.ExecutionContext,System.Threading.ContextCallback,object,bool)
+System.Threading.ExecutionContext:Run (System.Threading.ExecutionContext,System.Threading.ContextCallback,object)
+System.Threading.ThreadHelper:ThreadStart ()

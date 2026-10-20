@@ -2,7 +2,7 @@
     <name>[1001]Gene Spawn</name>
     <author>papercrane1001</author>
     <supportedVersions>
-        <li>1.6</li>
+        <li>1.7</li>
     </supportedVersions>
     <modDependencies>
         <li>
@@ -35,7 +35,7 @@ I used SpawnThoseGenes for learning about GeneDefs and Quarry for learning about
   
   Version 1.0.0
 
-  Compatibe with 1.6.  
+  Compatibe with 1.7.  
   
   CE compatible as long as all your gene mods are compatible.  
   
