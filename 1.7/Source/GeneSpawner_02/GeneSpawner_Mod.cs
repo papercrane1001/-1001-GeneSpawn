@@ -60,21 +60,33 @@ namespace GeneSpawner_02
                         if (flagRemove)
                         {
                             List<FloatMenuOption> blacklist = new List<FloatMenuOption>();
-                            using (IEnumerator<GeneDef> blacklistEnumerator = GeneSpawnerSettings.blacklist_GeneSpawner.GetEnumerator())
+                            using (IEnumerator<GeneDef> geneEnumerator = DefDatabase<GeneDef>.AllDefs.GetEnumerator())
                             {
-                                while (blacklistEnumerator.MoveNext())
+                                while (geneEnumerator.MoveNext())
                                 {
-                                    GeneDef gene = blacklistEnumerator.Current;
-                                    blacklist.Add(new FloatMenuOption(gene.LabelCap, delegate ()
+                                    GeneDef gene = geneEnumerator.Current;
+                                    if (GeneSpawnerSettings.blacklist_GeneSpawner.Contains(gene))
                                     {
-                                        GeneSpawnerSettings.blacklist_GeneSpawner.Remove(gene);
-                                    }));
+                                        blacklist.Add(new FloatMenuOption(gene.LabelCap, delegate ()
+                                        {
+                                            GeneSpawnerSettings.blacklist_GeneSpawner.Add(gene);
+                                        }));
+                                    }
                                 }
                             }
+                            //using (IEnumerator<GeneDef> blacklistEnumerator = GeneSpawnerSettings.blacklist_GeneSpawner.GetEnumerator())
+                            //{
+                            //    while (blacklistEnumerator.MoveNext())
+                            //    {
+                            //        GeneDef gene = blacklistEnumerator.Current;
+                            //        blacklist.Add(new FloatMenuOption(gene.LabelCap, delegate ()
+                            //        {
+                            //            GeneSpawnerSettings.blacklist_GeneSpawner.Remove(gene);
+                            //        }));
+                            //    }
+                            //}
                         }
                     }
-
-
                 }
                 bool flag = Widgets.ButtonText(rect05, "pc1001_GS_AddGene".Translate());
                 if (flag) 

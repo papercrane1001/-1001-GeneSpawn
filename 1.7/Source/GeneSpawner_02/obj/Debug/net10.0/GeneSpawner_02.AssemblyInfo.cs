@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GeneSpawner_02")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59456b27618a84bf1e94d308fcc5f47817427eb5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90b0718568f57a5f16e9882e7c33e2e3a7e355d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("GeneSpawner_02")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GeneSpawner_02")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

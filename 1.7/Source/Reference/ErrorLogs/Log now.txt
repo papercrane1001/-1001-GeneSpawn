@@ -1,0 +1,36 @@
+Exception parsing node <QRY_blacklist_GeneSpawner>System.Collections.Generic.List`1[Verse.GeneDef]</QRY_blacklist_GeneSpawner> into a System.Collections.Generic.List`1[Verse.GeneDef]:
+System.ArgumentException: Exception parsing System.Collections.Generic.List`1[Verse.GeneDef] from "System.Collections.Generic.List`1[Verse.GeneDef]"
+ ---> System.ArgumentException: Trying to parse to unknown data type List`1. Content is 'System.Collections.Generic.List`1[Verse.GeneDef]'.
+[Ref B6EDE2AF]
+   at Verse.ParseHelper.FromString(String str, Type itemType)
+   --- End of inner exception stack trace ---
+[Ref 4C69CE3D]
+   at Verse.ParseHelper.FromString(String str, Type itemType)
+   at Verse.ParseHelper.FromString[T](String str)
+   at Verse.ScribeExtractor.ValueFromNode[T](XmlNode subNode, T defaultValue)
+    at Brutal.Logging.LogCategory.Error(LogString`1 message, String sourceMemberName, String sourceFilePath, Int32 sourceLineNumber) [0x0]
+    at Verse.Log.Error(String text) [0x1C]
+    at Verse.ScribeExtractor.ValueFromNode(XmlNode subNode, T defaultValue) [0x37]
+    at Verse.Scribe_Values.Look(T& value, String label, T defaultValue, Boolean forceSave) [0x232]
+    at GeneSpawner_02.GeneSpawnerSettings.ExposeData() [0x1A] in C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[1001]GeneSpawn\1.7\Source\GeneSpawner_02\GeneSpawnerSettings.cs:27
+    at Verse.ScribeExtractor.SaveableFromNode(XmlNode subNode, Object[] ctorArgs) [0x1DD]
+    at Verse.Scribe_Deep.Look(T& target, Boolean saveDestroyedThings, String label, Object[] ctorArgs) [0x1CE]
+    at Verse.Scribe_Deep.Look(T& target, String label, Object[] ctorArgs) [0x0]
+    at Verse.LoadedModManager.ReadModSettings(String modIdentifier, String modHandleName) [0x23]
+    at Verse.Mod.GetSettings() [0x71]
+    at GeneSpawner_02.GeneSpawner_Mod..ctor(ModContentPack mcp) [0x9] in C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[1001]GeneSpawn\1.7\Source\GeneSpawner_02\GeneSpawner_Mod.cs:24
+    at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args) [0x0]
+    at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr) [0x7E]
+    at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture) [0x98]
+    at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture) [0x5A]
+    at System.RuntimeType.CreateInstanceImpl(BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture) [0x196]
+    at System.Activator.CreateInstance(Type type, Object[] args) [0x0]
+    at Verse.LoadedModManager.CreateModClasses() [0x85]
+    at Verse.LoadedModManager.LoadAllActiveMods(Boolean hotReload) [0x58]
+    at Verse.PlayDataLoader.DoPlayLoad() [0x2B]
+    at Verse.PlayDataLoader.LoadAllPlayData(Boolean recovering) [0x1C]
+    at Verse.Root+<>c.<Start>b__10_1() [0x0]
+    at Verse.LongEventHandler.RunEventFromAnotherThread(Action action) [0x8]
+    at Verse.LongEventHandler+<>c.<UpdateCurrentAsynchronousEvent>b__28_0() [0x0]
+    at System.Threading.Thread+StartHelper.Callback(Object state) [0x0]
+    at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state) [0x40]

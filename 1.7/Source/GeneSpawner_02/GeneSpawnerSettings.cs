@@ -26,7 +26,8 @@ namespace GeneSpawner_02
             Scribe_Values.Look(ref useBlacklist_GeneSpawner, "QRY_useBlacklist_GeneSpawner", false);
             try
             {
-                Scribe_Values.Look(ref blacklist_GeneSpawner, "QRY_blacklist_GeneSpawner");
+                //Scribe_Values.Look(ref blacklist_GeneSpawner, "QRY_blacklist_GeneSpawner");
+                Scribe_Collections.Look(ref blacklist_GeneSpawner, "QRY_blacklist_GeneSpawner", LookMode.Def);
             }
             catch(Exception e)
             {
