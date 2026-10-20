@@ -4,3 +4,5 @@
 /Source/GeneSpawner/obj
 *.cache
 /Source/GeneSpawner_02/.vs
+/1.7/Source/GeneSpawner_02/.vs
+*.vsidx
