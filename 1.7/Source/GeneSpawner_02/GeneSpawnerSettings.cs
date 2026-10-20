@@ -28,8 +28,11 @@ namespace GeneSpawner_02
             {
                 //Scribe_Values.Look(ref blacklist_GeneSpawner, "QRY_blacklist_GeneSpawner");
                 Scribe_Collections.Look(ref blacklist_GeneSpawner, "QRY_blacklist_GeneSpawner", LookMode.Def);
+
+                //Quarry version:
+                //Scribe_Collections.Look<ThingCountExposable>(ref QuarrySettings.oreDictionary, "QRY_OreDictionary", 0, Array.Empty<object>());
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 //Known causes: useBlackList is true, but on load list contains no items
                 Log.Message("Exception encountered in GeneSpawner.  Known causes: useBlackList is true, but on load list contains no items");
