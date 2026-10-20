@@ -48,7 +48,6 @@ namespace GeneSpawner_02
                 float t1 = 0.32f; //all within 1 standard dev have 1-3 random genes
                 float t2 = 0.1f;
 
-                //TODO: Blacklist?
                 //Decide how many genes to add
                 Random r = new Random();
                 double rr = r.NextDouble();
