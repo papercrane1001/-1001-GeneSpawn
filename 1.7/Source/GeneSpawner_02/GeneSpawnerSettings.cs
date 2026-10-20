@@ -24,7 +24,16 @@ namespace GeneSpawner_02
             base.ExposeData();
 
             Scribe_Values.Look(ref useBlacklist_GeneSpawner, "QRY_useBlacklist_GeneSpawner", false);
-            Scribe_Values.Look(ref blacklist_GeneSpawner, "QRY_blacklist_GeneSpawner");
+            try
+            {
+                Scribe_Values.Look(ref blacklist_GeneSpawner, "QRY_blacklist_GeneSpawner");
+            }
+            catch(Exception e)
+            {
+                //Known causes: useBlackList is true, but on load list contains no items
+                Log.Message("Exception encountered in GeneSpawner.  Known causes: useBlackList is true, but on load list contains no items");
+                Log.Message(e);
+            }
 
         }
 

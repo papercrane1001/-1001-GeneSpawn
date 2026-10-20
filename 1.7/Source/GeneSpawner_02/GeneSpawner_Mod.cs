@@ -42,16 +42,21 @@ namespace GeneSpawner_02
 
 
             Listing_Standard blacklistSection = ls.BeginSection(rect02.height);
+            Rect rect03 = GenUI.TopPart(rect02, 0.10f);
+            Rect rect04 = GenUI.MiddlePart(rect02, 1.0f, 0.80f);
+            //
+            Rect rect05 = GenUI.BottomPart(rect02, 0.10f);
             
             if (GeneSpawnerSettings.useBlacklist_GeneSpawner)
             {
                 //If using the blacklist
                 if (GeneSpawnerSettings.blacklist_GeneSpawner != null)
                 {
-                    //render the blacklist
+                    //If it has contents
                     if(GeneSpawnerSettings.blacklist_GeneSpawner.Count > 0)
                     {
-                        bool flagRemove = Widgets.ButtonText(rect02, "pc1001_GS_RemoveGene".Translate());
+                        //If the button to remove a gene is clicked
+                        bool flagRemove = Widgets.ButtonText(rect03, "pc1001_GS_RemoveGene".Translate());
                         if (flagRemove)
                         {
                             List<FloatMenuOption> blacklist = new List<FloatMenuOption>();
@@ -71,7 +76,7 @@ namespace GeneSpawner_02
 
 
                 }
-                bool flag = Widgets.ButtonText(rect02, "pc1001_GS_AddGene".Translate());
+                bool flag = Widgets.ButtonText(rect05, "pc1001_GS_AddGene".Translate());
                 if (flag) 
                 {
                     List<FloatMenuOption> geneList = new List<FloatMenuOption>();
