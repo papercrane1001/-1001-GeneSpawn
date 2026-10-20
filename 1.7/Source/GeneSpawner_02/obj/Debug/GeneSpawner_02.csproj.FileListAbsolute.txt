@@ -82,3 +82,7 @@ C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[1001]GeneSpawn\Sour
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[1001]GeneSpawn\Source\GeneSpawner_02\obj\Debug\GeneSpawner_02.pdb
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[1001]GeneSpawn\Assemblies\GeneSpawner_02.dll
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[1001]GeneSpawn\Assemblies\GeneSpawner_02.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[1001]GeneSpawn\1.7\Source\GeneSpawner_02\obj\Debug\GeneSpawner_02.csproj.AssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[1001]GeneSpawn\1.7\Source\GeneSpawner_02\obj\Debug\GeneSpawner_02.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[1001]GeneSpawn\1.7\Source\GeneSpawner_02\obj\Debug\GeneSpawner_02.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[1001]GeneSpawn\1.7\Source\GeneSpawner_02\obj\Debug\GeneSpawner_02.pdb

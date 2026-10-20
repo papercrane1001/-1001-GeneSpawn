@@ -10,8 +10,8 @@ namespace GeneSpawner_02
 {
     public class GeneSpawnerSettings : ModSettings
     {
-        internal static bool useBlacklist_GeneSpawner = false;
-        internal static List<GeneDef> blacklist_GeneSpawner = new List<GeneDef>();
+        public static bool useBlacklist_GeneSpawner = false;
+        public static List<GeneDef> blacklist_GeneSpawner = new List<GeneDef>();
 
         //internal static int medianGenes_GeneSpawner = 2;
 
@@ -25,6 +25,7 @@ namespace GeneSpawner_02
 
             Scribe_Values.Look(ref useBlacklist_GeneSpawner, "QRY_useBlacklist_GeneSpawner", false);
             Scribe_Values.Look(ref blacklist_GeneSpawner, "QRY_blacklist_GeneSpawner");
+
         }
 
     }
