@@ -1,6 +1,11 @@
-/Source/GeneSpawner/.vs
-/Source/GeneSpawner/.vs
-*.json
-/Source/GeneSpawner/obj
+# Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+
+# Build intermediates (DLLs in <version>/Assemblies are committed on purpose)
+**/Source/**/bin/
+**/Source/**/obj/
 *.cache
-/Source/GeneSpawner_02/.vs
+*.json

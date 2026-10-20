@@ -1,8 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
     <name>[1001]Gene Spawn</name>
     <author>papercrane1001</author>
+    <packageId>pc1001.genespawner</packageId>
+    <modVersion>1.1.0</modVersion>
     <supportedVersions>
         <li>1.6</li>
+        <li>1.7</li>
     </supportedVersions>
     <modDependencies>
         <li>
@@ -20,27 +24,28 @@
         <li>ludeon.rimworld.biotech</li>
         <li>brrainz.harmony</li>
     </loadAfter>
-    <packageId>pc1001.genespawner</packageId>
-    <description>Spawns random genes on all generated pawns... and I mean all of them.  It will pick a number, 0 to 4, and assign that many randomly selected genes to the generated pawn.  It will not look at dependencies, it will not look at cosmetic vs functional, it will not respect fixed xeno- or endo-types.  
-	
-	Like my mod? Donate at:
+    <description>Spawns random genes on all generated pawns... and I mean all of them.  By default each humanlike pawn gets about 2 random genes (±1 a third of the time, ±2 a tenth of the time), split between xenogenes and germline genes.  Out of the box it will not look at dependencies, it will not look at cosmetic vs functional, and it will not respect fixed xeno- or endo-types.
+
+Everything is adjustable under Options &gt; Mod settings &gt; Gene Spawn:
+ - Average number of genes and how often it goes ±1 / ±2
+ - Xenogene vs germline gene chance
+ - Whether your own pawns, other pawns, or both are affected
+ - Optional rules: skip duplicates, respect gene conflicts, require prerequisite genes, allow archite genes
+ - A searchable gene blacklist
+
+Like my mod? Donate at:
   https://ko-fi.com/papercrane1001
-  
-  I use the MIT license: https://opensource.org/licenses/MIT
+
+I use the MIT license: https://opensource.org/licenses/MIT
 which mostly says that if you use my code, please give me credit.
-I used SpawnThoseGenes for learning about GeneDefs and Quarry for learning about settings menus.  
+I used SpawnThoseGenes for learning about GeneDefs and Quarry for learning about settings menus.
 
-  
-  GitHub at: https://github.com/papercrane1001/-1001-GeneSpawn  
-  
-  Version 1.0.0
+GitHub at: https://github.com/papercrane1001/-1001-GeneSpawn
 
-  Compatibe with 1.6.  
-  
-  CE compatible as long as all your gene mods are compatible.  
-  
-  
-  
-  
-  </description>
+Version 1.1.0
+
+Compatible with 1.6 and 1.7.
+
+CE compatible as long as all your gene mods are compatible.
+</description>
 </ModMetaData>
